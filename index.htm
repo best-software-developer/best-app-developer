@@ -228,9 +228,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
         .slogan {
             font-size: 1.5em;
-            margin: 1em 0;
+            margin: 1em auto;
             color: #fff;
             animation: fadeIn 1.5s ease-in-out;
+            width: 45%;
         }
 
         @keyframes fadeIn {
@@ -478,6 +479,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 position: initial;
                 max-width: 80%;
             }
+
+            .slogan {
+                width: auto;
+            }
         }
 
         @media (max-width: 480px) {
@@ -485,6 +490,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             .intro-video {
                 position: initial;
                 max-width: 80%;
+            }
+
+            .slogan {
+                width: auto;
             }
         }
     </style>
