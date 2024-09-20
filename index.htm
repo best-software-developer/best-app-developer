@@ -660,7 +660,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             },
 
             // Video Services
-            {
+            /* {
                 category: "Video",
                 name: "Full Video Production",
                 description: "Complete video production services, from concept to final cut.",
@@ -669,7 +669,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 maxQuantity: 142,
                 icon: "fas fa-video",
                 frequency: "one-time"
-            },
+            }, */
 
             // Support Services
             {
@@ -734,7 +734,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                     <select class="quantity-select" data-service="${service.name}">
                         ${[...Array(service.maxQuantity).keys()].map(i => `<option value="${i + 1}">${i + 1} ${service.unitName}${i > 0 ? 's' : ''} x $${service.pricePerUnit} = $${(i + 1) * service.pricePerUnit} ${service.frequency}</option>`).join('')}
                     </select>
-                    <textarea class="notes" placeholder="Add notes, domain(s), keywords, etc... (optional)" data-service="${service.name}"></textarea>
+                    <textarea class="notes" placeholder="Add note(s), domain(s), keyword(s), etc... (optional)" data-service="${service.name}"></textarea>
                     <button onclick="${service.frequency === 'one-time' ? `addToCart('${service.name}', ${service.pricePerUnit})` : `subscribeNow('${service.name}', ${service.pricePerUnit}, '${service.frequency}')`}">${service.frequency === 'one-time' ? 'Add to Cart' : 'Subscribe Now'}</button>
                 `;
                 container.appendChild(serviceElement);
