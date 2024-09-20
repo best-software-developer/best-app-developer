@@ -947,7 +947,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                     break;
             }
 
-            const payUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&business=pay@BestSEOLosAngeles.com&item_name=${encodeURIComponent(name)}&a3=${(price * quantity).toFixed(2)}&p3=1&t3=${t3}&src=1&sra=1&currency_code=USD&return=${returnUrl}&cancel_return=${cancelUrl}&custom=${encodeURIComponent(notes)}`;
+            const payUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&no_shipping=1&business=pay@BestSEOLosAngeles.com&item_name=${encodeURIComponent(name)}&a3=${(price * quantity).toFixed(2)}&p3=1&t3=${t3}&src=1&sra=1&currency_code=USD&return=${returnUrl}&cancel_return=${cancelUrl}&custom=${encodeURIComponent(notes)}`;
 
             window.location.href = payUrl;
         }
@@ -991,6 +991,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 <input type="hidden" name="return" value="${window.location.href}">
                 <input type="hidden" name="cancel_return" value="${window.location.href}">
                 <input type="hidden" name="contact_phone" value="1">
+                <input type="hidden" name="no_shipping" value="1">
             `;
 
             cart.forEach((item, index) => {
