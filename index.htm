@@ -541,135 +541,17 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     <form id="paypal-form" class="hidden-form" method="post" action="https://www.paypal.com/cgi-bin/webscr"></form>
     <script>
         const services = [
-            // Design Services
-            {
-                category: "Design",
-                name: "Design",
-                description: "Design from initial concepts to final designs.",
-                pricePerUnit: 25,
-                unitName: "hour",
-                maxQuantity: 160,
-                icon: "fas fa-paint-brush",
-                frequency: "one-time"
-            },
-
             // Development Services
             {
-                category: "Development",
-                name: "Development",
-                description: "Develop custom code tailored to your needs.",
+                category: "Design & Development",
+                name: "Design & Development",
+                description: "Design and/or develop custom code tailored to your needs.",
                 pricePerUnit: 49,
                 unitName: "hour",
                 maxQuantity: 80,
                 icon: "fas fa-code",
                 frequency: "one-time"
             },
-
-            // On-page SEO Services
-            {
-                category: "On-page SEO",
-                name: "On-page SEO Optimization",
-                description: "Optimize your website's on-page elements, including content, meta tags, and images.",
-                pricePerUnit: 99,
-                unitName: "webpage",
-                maxQuantity: 50,
-                icon: "fas fa-search",
-                frequency: "one-time"
-            },
-            {
-                category: "On-page SEO",
-                name: "SEO Strategy Development",
-                description: "Develop a custom tailored SEO strategy with targeted keywords for your website.",
-                pricePerUnit: 99,
-                unitName: "strategy",
-                maxQuantity: 50,
-                icon: "fas fa-lightbulb",
-                frequency: "one-time"
-            },
-            {
-                category: "On-page SEO",
-                name: "SEO Sitemap Creation",
-                description: "Create or update your website's sitemap and submit it to search engines for better indexing.",
-                pricePerUnit: 99,
-                unitName: "website",
-                maxQuantity: 50,
-                icon: "fas fa-sitemap",
-                frequency: "one-time"
-            },
-
-            // Off-page SEO Services
-            {
-                category: "Off-page SEO",
-                name: "Search Console Setup",
-                description: "Setup and configure Google Search Console or Bing Webmaster Tools for your domain.",
-                pricePerUnit: 99,
-                unitName: "domain",
-                maxQuantity: 50,
-                icon: "fas fa-toolbox",
-                frequency: "one-time"
-            },
-            {
-                category: "Off-page SEO",
-                name: "High-Authority Backlink",
-                description: "Get a high-ranking backlink placed on a related high domain authority website.",
-                pricePerUnit: 249,
-                unitName: "link",
-                maxQuantity: 20,
-                icon: "fas fa-link",
-                frequency: "one-time"
-            },
-            {
-                category: "Off-page SEO",
-                name: "SEO Article with Backlink",
-                description: "Custom targeted SEO article written and placed on a high-ranking related high domain authority website.",
-                pricePerUnit: 299,
-                unitName: "article",
-                maxQuantity: 15,
-                icon: "fas fa-file-alt",
-                frequency: "one-time"
-            },
-            {
-                category: "Off-page SEO",
-                name: "SEO Press Release",
-                description: "Write and distribute SEO-optimized press releases to improve your online visibility.",
-                pricePerUnit: 499,
-                unitName: "release",
-                maxQuantity: 10,
-                icon: "fas fa-newspaper",
-                frequency: "one-time"
-            },
-            /* {
-                category: "Off-page SEO",
-                name: "SEO Forum Participation",
-                description: "Participate in forum discussions and post your website backlinks on related topics.",
-                pricePerUnit: 249,
-                unitName: "blast",
-                maxQuantity: 40,
-                icon: "fas fa-comments",
-                frequency: "one-time"
-            }, */
-            {
-                category: "Off-page SEO",
-                name: "Google My Business Optimization",
-                description: "Optimize your website and online presence for local search, including Google My Business to attract local customers.",
-                pricePerUnit: 499,
-                unitName: "business",
-                maxQuantity: 10,
-                icon: "fas fa-map-marker-alt",
-                frequency: "one-time"
-            },
-
-            // Video Services
-            /* {
-                category: "Video",
-                name: "Full Video Production",
-                description: "Complete video production services, from concept to final cut.",
-                pricePerUnit: 35,
-                unitName: "hour",
-                maxQuantity: 142,
-                icon: "fas fa-video",
-                frequency: "one-time"
-            }, */
 
             // Support Services
             {
@@ -686,7 +568,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 category: "Support",
                 name: "Website & Server Maintenance",
                 description: "Provide regular maintenance and updates for your server or website.",
-                pricePerUnit: 499,
+                pricePerUnit: 249,
                 unitName: "server/website",
                 maxQuantity: 20,
                 icon: "fas fa-tools",
@@ -856,6 +738,8 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 cart.push({ name, price, quantity, maxQuantity: service.maxQuantity, notes });
             }
             updateCart();
+
+            alert('Item has been added to your shopping cart, please click checkout below to complete your purchase...');
         }
 
         function updateQuantity(name, quantity) {
@@ -960,6 +844,8 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         function paypalCheckout() {
             if (cart.length < 1) return alert('Cart empty!');
 
+            const urlObj = new URL(window.location.href);
+
             const form = document.getElementById('paypal-form');
             form.innerHTML = `
                 <input type="hidden" name="cmd" value="_cart">
@@ -970,6 +856,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 <input type="hidden" name="cancel_return" value="${window.location.href}">
                 <input type="hidden" name="contact_phone" value="1">
                 <input type="hidden" name="no_shipping" value="1">
+                <input type="hidden" name="custom" value="${urlObj.hostname}">
             `;
 
             cart.forEach((item, index) => {
@@ -987,7 +874,14 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         function venmoCheckout() {
             if (cart.length < 1) return alert('Cart empty!');
 
-            let notes = `Payment for services from ${window.location.href}: `;
+            const phone = prompt("What's your contact phone number so we can reach you?").trim();
+
+            if (!phone)
+                return alert("Contact phone number is required, can't continue!");
+
+            const urlObj = new URL(window.location.href);
+
+            let notes = `Customer Phone: ${phone} - Payment for services from ${urlObj.hostname}: `;
             let amount = 0;
 
             cart.forEach((item, index) => {
@@ -996,20 +890,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             });
 
             window.location.href = `https://venmo.com/meftekhari143?txn=pay&amount=${encodeURIComponent(amount.toFixed(2))}&note=${encodeURIComponent(notes)}`;
-        }
-
-        function cashAppCheckout() {
-            if (cart.length < 1) return alert('Cart empty!');
-
-            let notes = `Payment for services from ${window.location.href}: `;
-            let amount = 0;
-
-            cart.forEach((item, index) => {
-                amount += Number(item.price) * Number(item.quantity);
-                notes += `${index + 1}. ${item.name} - ${item.quantity} x $${item.price} ${item.notes ? '(' + item.notes + ')' : ''} `;
-            });
-
-            window.location.href = `https://cash.app/$mohammad143/${amount.toFixed(2)}?note=${encodeURIComponent(notes)}`;
         }
 
         document.getElementById('cart-checkout').addEventListener('click', () => venmoCheckout());
