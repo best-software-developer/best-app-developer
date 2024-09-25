@@ -540,7 +540,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     </footer>
     <form id="paypal-form" class="hidden-form" method="post" action="https://www.paypal.com/cgi-bin/webscr"></form>
     <script>
-        const services = [
+        let services = [
             // Development Services
             {
                 category: "Design & Development",
@@ -814,7 +814,20 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             window.location.href = payUrl;
         }
 
-        function contentLoaded() {
+        async function fetchMarketingServices() {
+            const response = await fetch('https://bestdigitalmarketeer.com/');
+            const html = await response.text();
+            const servicesMatch = html.match(/const services = (\[.*?\]);/s);
+            const servicesVar = eval(servicesMatch[1]);
+
+            services = [
+                ...services,
+                ...servicesVar,
+            ];
+        }
+
+        async function contentLoaded() {
+            await fetchMarketingServices();
             generateServiceItems();
             generateFilterButtons();
             generatePortfolioItems();
