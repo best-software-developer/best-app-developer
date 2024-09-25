@@ -55,6 +55,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             background: linear-gradient(to right, #4c8baf, #1e4a6d);
             color: white;
             overflow-x: hidden;
+            text-align: center;
         }
 
         header,
@@ -367,7 +368,8 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             resize: none;
         }
 
-        .service button {
+        .service button,
+        .large-btn {
             font-size: medium;
             background: linear-gradient(135deg, #1e4a6d, #4c8baf);
             color: white;
@@ -379,10 +381,15 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             margin-top: 1em;
         }
 
-        .service button:hover {
+        .service button:hover,
+        .large-btn:hover {
             background: linear-gradient(135deg, #2a6b8d, #5a9ccf);
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .large-btn {
+            margin: auto auto 1.5em auto;
         }
 
         .service:hover,
@@ -524,6 +531,9 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     <section class="services" id="services-container">
         <!-- Services will be generated here by JavaScript -->
     </section>
+    <button class="large-btn" onclick="window.location.href='https://bestdigitalmarketeer.com/';">Click Here For Our
+        Marketing
+        Services</button>
     <div class="section-header">Portfolio</div>
     <section class="portfolio" id="portfolio-container">
         <!-- Portfolio items will be generated here by JavaScript -->
@@ -829,7 +839,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         }
 
         async function contentLoaded() {
-            await fetchMarketingServices();
+            // await fetchMarketingServices();
             generateServiceItems();
             generateFilterButtons();
             generatePortfolioItems();
