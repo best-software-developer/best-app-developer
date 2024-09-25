@@ -819,7 +819,9 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             const html = await response.text();
             const servicesMatch = html.match(/const services = (\[.*?\]);/s);
             const servicesVar = eval(servicesMatch[1]);
-
+            servicesVar.splice(2, 1);
+            servicesVar.splice(5, 1);
+            servicesVar.pop();
             services = [
                 ...services,
                 ...servicesVar,
