@@ -482,6 +482,11 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             overflow: hidden;
         }
 
+        .testimonial-video {
+            width: 768px;
+            height: 432px
+        }
+
         @media (max-width: 768px) {
 
             .intro-video {
@@ -495,6 +500,11 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         }
 
         @media (max-width: 480px) {
+
+            .testimonial-video {
+                width: 360px;
+                height: 203px
+            }
 
             .intro-video {
                 position: initial;
@@ -539,7 +549,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         Marketing
         Services</a>
     <br>
-    <iframe width="768" height="432" src="https://www.youtube-nocookie.com/embed/Xc0JC3YSMUg?si=7FodThP6tN1K0kj4"
+    <iframe class="testimonial-video" src="https://www.youtube-nocookie.com/embed/Xc0JC3YSMUg?si=7FodThP6tN1K0kj4"
         style="display: inline-block; margin-bottom:2em;" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
