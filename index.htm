@@ -295,24 +295,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             margin: 0 auto;
         }
 
-        @media (max-width: 768px) {
-
-            .services,
-            .portfolio,
-            .reviews {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            .services,
-            .portfolio,
-            .reviews {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .service,
         .portfolio-item,
         .review-item {
@@ -489,7 +471,15 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             display: inline-block;
         }
 
-        @media (max-width: 768px) {
+        /* Target iPad Sized Devices */
+        @media screen and (max-width: 768px) {
+
+            .services,
+            .portfolio,
+            .reviews {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
             iframe.testimonial-video {
                 width: 576px;
                 height: 324px;
@@ -511,7 +501,15 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             }
         }
 
-        @media (max-width: 480px) {
+        /* Target iPhone Sized Devices */
+        @media screen and (max-width: 480px) {
+
+            .services,
+            .portfolio,
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+
             iframe.testimonial-video {
                 width: 360px;
                 height: 203px;
