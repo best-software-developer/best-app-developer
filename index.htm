@@ -722,10 +722,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         ];
 
         const portfolioItems = [
+            { name: "BotGrabber.com", url: "https://botgrabber.com/", description: "Developed a catering delivery bot." },
             { name: "Snipeable.com", url: "https://snipeable.com/", description: "App and website development for a competitive bidding platform." },
             { name: "PF-Licensing.com", url: "http://pf-licensing.com", description: "Custom WordPress LMS plugin development and theme design." },
             { name: "Sim.Social", url: "https://sim.social/", description: "WordPress Social Networking Crypto/NFT Platform & Immersive XR Simulator." },
-            { name: "MarriottRegistry.com", url: "https://gifts.marriott.com/", description: "Developed a gift registry website where their customers can register to receive gifts." },
             { name: "ManifestMassageSpas.com", url: "http://manifestmassagespas.com", description: "Recovered owners Google ads account and setup social media advertising as well as performed website additions." },
             { name: "MonetColoredDiamonds.com", url: "http://monetcoloreddiamonds.com", description: "Rescued website owner from an off-shore developer who locked the website." },
             { name: "WordPress Localhost", url: "https://github.com/wordpresslocalhost/hosting", description: "Streamlined platform for local WordPress development." },
@@ -954,7 +954,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                     break;
             }
 
-            const payUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&no_shipping=1&business=pay@BestSEOLosAngeles.com&item_name=${encodeURIComponent(name)}&a3=${(price * quantity).toFixed(2)}&p3=1&t3=${t3}&src=1&sra=1&currency_code=USD&return=${returnUrl}&cancel_return=${cancelUrl}&custom=${encodeURIComponent(notes)}`;
+            const payUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&no_shipping=1&business=paypal@botgrabber.com&item_name=${encodeURIComponent(name)}&a3=${(price * quantity).toFixed(2)}&p3=1&t3=${t3}&src=1&sra=1&currency_code=USD&return=${returnUrl}&cancel_return=${cancelUrl}&custom=${encodeURIComponent(notes)}`;
 
             window.location.href = payUrl;
         }
